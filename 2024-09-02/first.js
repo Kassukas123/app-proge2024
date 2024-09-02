@@ -57,3 +57,10 @@ console.log(addNumbersNested(3)(8));
 const addNumbersNestedArrow = (num1) => num2 => num1 + num2;
 
 console.log(addNumbersNestedArrow(9)(102));
+
+//ylesanne 7
+const greet = (name = "world") => 'Hello ${name}'; //siin nende komadega error
+
+console.log(greet());
+console.log(greet("Kaspar"));
+

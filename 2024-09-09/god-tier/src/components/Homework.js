@@ -2,7 +2,7 @@ import React from "react"
 import "./Homework.css"
 
 const Homework = props => {
-  const hobbies = ["autoga sõitmine", "filmide vaatamine", "õues käimine"]
+  const hobbies = ["autoga sõitmine", "filmide vaatamine", "õues kimine"]
 
   return (
     <div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import "./Counter.css"
 
 const Counter = () => {
   const [counter, setCounter] = useState(0)
@@ -7,8 +8,10 @@ const Counter = () => {
   const modifyCounter = value => setCounter(prevCounter => prevCounter + value)
 
   return (
-    <>
-      <h1> {counter} </h1>
+    <div>
+      <div className="counter">
+        <h1> {counter} </h1>
+      </div>
 
       {[+1, +5, +50, -1, -5, -50].map(element => (
         <button
@@ -23,7 +26,7 @@ const Counter = () => {
       {/* <button onClick={() => setTimeout(() => modifyCounter(), 2000)}>
         async+1
       </button> */}
-    </>
+    </div>
   )
   //pane v2ikse t2hega, muidu viitad componendile, mitte muutajale
 }

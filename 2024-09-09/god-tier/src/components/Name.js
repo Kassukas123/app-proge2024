@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
 const Name = ({ title = "World" }) => {
-    return <h1>Hello {title}</h1>;
-};
+  return <h1>Hello {title}</h1>
+}
 
 /*const Name = (props) => {
     console.log({ props });
@@ -15,4 +15,4 @@ const Name = ({ title = "World" }) => {
     return <h1>{title}</h1>;
 };*/
 
-export default Name;
+export default Name

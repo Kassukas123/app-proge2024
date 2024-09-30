@@ -6,15 +6,17 @@ import PropDrilling from "./components/PropDrilling"
 import Show from "./components/Show"
 import Homework from "./components/Homework"
 import Fruits from "./components/Fruits"
+import Context from "./components/Context"
 
 function App() {
-  // const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true)
 
-  // const toggleShow = () => setShow(prevShow => !prevShow)
+  const toggleShow = () => setShow(prevShow => !prevShow)
 
   return (
     <>
       <Homework name="Kaspar" />
+      {/* <Context /> */}
       {/* <Show
         show={show}
         toggleShowShow={toggleShow}
@@ -22,8 +24,8 @@ function App() {
       <PropDrilling /> */}
       <Counter />
       {/* <Name title="Kaspar" />
-      <Name /> */}
-      <Fruits />
+      <Name />
+      <Fruits /> */}
     </>
   )
 }

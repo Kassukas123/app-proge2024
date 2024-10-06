@@ -13,6 +13,13 @@ const cats = [
     updatedAt: null,
     deleted: false,
   },
+  {
+    id: "629a68f1-e276-4622-98d4-06240b102f51",
+    name: "Deleted",
+    createdAt: 1727098952739,
+    updatedAt: null,
+    deleted: true,
+  }
 ];
 
 exports.create = (req, res) => {
@@ -39,9 +46,55 @@ exports.create = (req, res) => {
 };
 
 exports.read = (req, res) => {
-  res.send(cats);
+  const activeCats = cats.filter(cat => !cat.deleted);
+  res.send(activeCats);
 };
 
-exports.update = (req, res) => {};
+exports.update = (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
 
-exports.delete = (req, res) => {};
+  if (!name || name === "") {
+    return res
+      .status(418)
+      .send({ type: "Error", message: "Must include a name" });
+  }
+
+  const cat = cats.find((cat) => cat.id === id);
+
+  if (!cat || cat.deleted) {
+    return res.status(404).send({ type: "Error", message: "Cat not found" });
+  }
+
+  cat.name = name;
+  cat.updatedAt = Date.now();
+
+  res.send(cat);
+};
+
+exports.delete = (req, res) => {
+  const { id } = req.params;
+
+  const cat = cats.find((cat) => cat.id === id);
+
+  if (!cat || cat.deleted) {
+    return res.status(404).send({ type: "Error", message: "Cat not found" });
+  }
+
+  cat.deleted = true;
+  res.send({ message: "Cat deleted", cat });
+};
+
+exports.delete = (req, res) => {
+  const { id } = req.params;
+
+  const cat = cats.find((cat) => cat.id === id);
+
+  if (!cat) {
+    return res.status(404).send({ type: "Error", message: "Cat not found" });
+  }
+
+  cat.deleted = true;
+
+  res.send({ message: "Cat deleted", cat });
+};

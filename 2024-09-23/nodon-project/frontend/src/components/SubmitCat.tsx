@@ -1,5 +1,6 @@
 import { Box, Button, Stack, TextField } from "@mui/material";
 import React, { useState, useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
 
 type Cat = {
   id: string;
@@ -15,6 +16,8 @@ type SubmitCatProps = {
 
 const SubmitCat = ({ fetchCats, cat, onDelete, onCancel }: SubmitCatProps) => {
   const [name, setName] = useState("");
+
+  const theme = useTheme(); 
 
   useEffect(() => {
     if (cat) {
@@ -70,7 +73,7 @@ const SubmitCat = ({ fetchCats, cat, onDelete, onCancel }: SubmitCatProps) => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        backgroundColor: "white",
+        backgroundColor: theme.palette.background.default,
         padding: 9,
         borderRadius: 1,
         boxShadow: 2,
@@ -86,6 +89,9 @@ const SubmitCat = ({ fetchCats, cat, onDelete, onCancel }: SubmitCatProps) => {
             onChange={handleNameChange}
             variant="outlined"
             fullWidth
+            sx={{
+              backgroundColor: theme.palette.secondary.main
+            }}
           />
           <Button variant="contained" color="primary" type="submit">
             {cat ? "Update" : "Add"}

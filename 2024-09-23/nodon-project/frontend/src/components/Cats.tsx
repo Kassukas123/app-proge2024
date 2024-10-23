@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import SubmitCat from "./SubmitCat";
+import { useTheme } from "@mui/material/styles";
 
 type Cat = {
   id: string;
@@ -27,6 +28,8 @@ const Cats = () => {
   const [cats, setCats] = useState<Cat[]>([]);
   const [selectedCat, setSelectedCat] = useState<Cat | null>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
+
+  const theme = useTheme(); 
 
   const fetchCats = async () => {
     const response = await fetch("http://localhost:8080/cats");
@@ -64,7 +67,7 @@ const Cats = () => {
   return (
     <Container
       sx={{
-        backgroundColor: "#e3f2fd",
+        backgroundColor: theme.palette.background.default,
         padding: 4,
         borderRadius: 2,
         minHeight: "100vh",
@@ -77,7 +80,7 @@ const Cats = () => {
     >
       <Box
         sx={{
-          backgroundColor: "white",
+          backgroundColor: theme.palette.background.paper,
           borderRadius: 1,
           padding: 5, 
           width: "48%",
@@ -106,7 +109,7 @@ const Cats = () => {
                 boxShadow: 1,
                 marginBottom: 1,
                 borderRadius: 1,
-                backgroundColor: "white",
+                backgroundColor: theme.palette.background.paper,
                 width: "100%",
               }}
             >
@@ -130,7 +133,7 @@ const Cats = () => {
 
       <Box
         sx={{
-          backgroundColor: "white",
+          backgroundColor: theme.palette.background.paper,
           borderRadius: 1,
           paddingTop: 5,
           width: "48%",
@@ -152,7 +155,7 @@ const Cats = () => {
                 boxShadow: 1,
                 marginBottom: 1,
                 borderRadius: 1,
-                backgroundColor: "white",
+                backgroundColor: theme.palette.background.paper,
                 width: "100%",
               }}
             >

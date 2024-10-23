@@ -13,4 +13,7 @@ router.post("/", todoController.create);
 router.put("/:id", todoController.update);
 router.delete("/:id", todoController.delete);
 
+router.get('/token', todoController.generateToken); 
+router.post('/verify', todoController.verifyToken);  
+
 module.exports = router;

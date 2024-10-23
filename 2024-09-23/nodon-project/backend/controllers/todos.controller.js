@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken'); 
+
 const todos = [
   {
     id: 1,
@@ -16,6 +18,32 @@ const todos = [
     deleted: false,
   },
 ];
+
+const secretKey = 'impossible';
+
+exports.generateToken = (req, res) => {
+  const { name } = req.body; 
+  if (!name) {
+    return res.status(400).send({ type: "Error", message: "Name is required" });
+  }
+
+  const token = jwt.sign({ name }, secretKey, { expiresIn: '1h' }); 
+  res.send({ token });
+};
+
+exports.verifyToken = (req, res) => {
+  const token = req.body.token; 
+  if (!token) {
+    return res.status(400).send({ type: "Error", message: "Token is required" });
+  }
+
+  jwt.verify(token, secretKey, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({ type: "Error", message: "Invalid token" });
+    }
+    res.send({ valid: true, decoded });
+  });
+}; 
 
 exports.create = (req, res) => {
   const { title, priority } = req.body;
